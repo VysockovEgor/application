@@ -125,374 +125,257 @@ class _TasksPageState extends ConsumerState<TasksPage>
 
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                    height: 180,
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: darkBlue,
-                      borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(100),
-                      ),
-                    ),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 20),
-                        Text(
-                          "Уровни",
-                          style: TextStyle(
-                            fontFamily: "Europe",
-                            fontSize: big + 5,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
+        child: Column(
+          children: [
+            // Header
+            Container(
+              height: 160,
+              width: double.infinity,
+              color: darkBlue,
+              child: const Center(
+                child: Text(
+                  "Финансовая аналитика",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
-                  Positioned(
-                    bottom: -50,
-                    left: 0,
-                    right: 0,
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 40),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 16),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 32,
-                                        height: 32,
-                                        child: medal,
-                                      ),
-                                      const SizedBox(width: 8),
-                                      const Text(
-                                        "12",
-                                        style: TextStyle(
-                                          fontFamily: "Europe",
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                          color: yellow,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 4),
-                                  const Text(
-                                    "баллов",
-                                    style: TextStyle(
-                                      fontFamily: "Europe",
-                                      fontSize: 14,
-                                      color: greyText,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(width: 40),
-                              Container(
-                                width: 1,
-                                height: 40,
-                                color: Colors.grey[300],
-                              ),
-                              const SizedBox(width: 40),
-                              Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 32,
-                                        height: 32,
-                                        child: time_clock,
-                                      ),
-                                      const SizedBox(width: 8),
-                                      const Text(
-                                        "7",
-                                        style: TextStyle(
-                                          fontFamily: "Europe",
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                          color: yellow,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 4),
-                                  const Text(
-                                    "дней",
-                                    style: TextStyle(
-                                      fontFamily: "Europe",
-                                      fontSize: 14,
-                                      color: greyText,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Container(
-                          height: 35,
-                          decoration: const BoxDecoration(
-                            color: backgroundColor,
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(50),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 80),
-                    // Новичок (слева)
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: SizedBox(
-                        width: screenWidth * 0.7,
-                        child: _buildLevelCard(levels[0], 0),
-                      ),
-                    ),
-                    // Линия от Новичка к Продвинутому
-                    SizedBox(
-                      height: 95,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            left: 8,
-                            right: 8,
-                            child: SvgPicture.asset(
-                              'assets/images/way1.svg',
-                              width: screenWidth - 16,
-                              height: 95,
-                              fit: BoxFit.fill,
-                              colorFilter: ColorFilter.mode(
-                                levels[1].isLocked
-                                    ? Colors.grey
-                                    : Colors.yellow,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Продвинутый (справа)
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: SizedBox(
-                        width: screenWidth * 0.7,
-                        child: _buildLevelCard(levels[1], 1),
-                      ),
-                    ),
-                    // Линия от Продвинутого к Профи
-                    SizedBox(
-                      height: 95,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            left: 8,
-                            right: 8,
-                            child: SvgPicture.asset(
-                              'assets/images/way2.svg',
-                              width: screenWidth - 16,
-                              height: 95,
-                              fit: BoxFit.fill,
-                              colorFilter: ColorFilter.mode(
-                                levels[2].isLocked
-                                    ? Colors.grey
-                                    : Colors.grey.shade400,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Профи (слева)
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: SizedBox(
-                        width: screenWidth * 0.7,
-                        child: _buildLevelCard(levels[2], 2),
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+            // Content
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.all(16),
+                children: [
+                  _buildBalanceCard(),
+                  const SizedBox(height: 16),
+                  _buildExpensesCard(),
+                  const SizedBox(height: 16),
+                  _buildGoalsCard(),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildLevelCard(TaskLevel level, int index) {
-    // Определяем цвет для заблокированного состояния
-    final Color lockColor = Colors.grey.shade300;
-    final bool isLocked = level.isLocked;
-
-    return GestureDetector(
-      onTap: isLocked
-          ? null
-          : () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LevelTasksPage(
-                    level: level,
-                    levelIndex: index,
-                  ),
-                ),
-              );
-            },
-      child: Container(
+  Widget _buildBalanceCard() {
+    return Card(
+      child: Padding(
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isLocked ? lockColor : Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              "Твой баланс",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: darkBlue,
+              ),
+            ),
+            const SizedBox(height: 16),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (index != 1) ...[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: SizedBox(
-                      width: 80,
-                      height: 80,
-                      child: ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                          isLocked ? Colors.grey : Colors.transparent,
-                          BlendMode.saturation,
-                        ),
-                        child: level.levelImage,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "₽ 5,000",
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                ],
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              level.name,
-                              style: TextStyle(
-                                fontFamily: "Europe",
-                                fontSize: big,
-                                fontWeight: FontWeight.bold,
-                                color: isLocked ? Colors.grey : Colors.black,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                          ),
-                          if (isLocked) ...[
-                            const SizedBox(width: 8),
-                            const Icon(Icons.lock,
-                                color: Colors.grey, size: 20),
-                          ],
-                        ],
+                    Text(
+                      "Доступно",
+                      style: TextStyle(
+                        color: Colors.grey[600],
                       ),
-                      const SizedBox(height: 8),
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: yellow,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.add, size: 20),
+                      SizedBox(width: 4),
                       Text(
-                        level.totalTasks > 0
-                            ? 'Выполнено заданий ${level.completedTasks}/${level.totalTasks}'
-                            : 'Нет доступных заданий',
+                        "Пополнить",
                         style: TextStyle(
-                          fontFamily: "Europe",
-                          fontSize: normal,
-                          color: isLocked ? Colors.grey : Colors.grey[600],
+                          fontWeight: FontWeight.bold,
                         ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
                       ),
                     ],
                   ),
                 ),
-                if (index == 1) ...[
-                  const SizedBox(width: 16),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: SizedBox(
-                      width: 80,
-                      height: 80,
-                      child: ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                          isLocked ? Colors.grey : Colors.transparent,
-                          BlendMode.saturation,
-                        ),
-                        child: level.levelImage,
-                      ),
-                    ),
-                  ),
-                ],
               ],
-            ),
-            const SizedBox(height: 16),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: LinearProgressIndicator(
-                value: level.totalTasks > 0
-                    ? level.completedTasks / level.totalTasks
-                    : 0,
-                backgroundColor:
-                    isLocked ? Colors.grey.shade200 : Colors.grey[200],
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  isLocked
-                      ? Colors.grey
-                      : (index == 0
-                          ? yellow
-                          : (index == 1 ? darkBlue : Colors.purple)),
-                ),
-                minHeight: 10,
-              ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildExpensesCard() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Расходы за месяц",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: darkBlue,
+              ),
+            ),
+            const SizedBox(height: 16),
+            _buildExpenseItem("Еда", "₽ 2,500", 0.5),
+            _buildExpenseItem("Развлечения", "₽ 1,200", 0.3),
+            _buildExpenseItem("Транспорт", "₽ 800", 0.2),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildExpenseItem(String category, String amount, double percentage) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                category,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              Text(
+                amount,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          LinearProgressIndicator(
+            value: percentage,
+            backgroundColor: Colors.grey[200],
+            valueColor: const AlwaysStoppedAnimation<Color>(yellow),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGoalsCard() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Твои цели",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: darkBlue,
+              ),
+            ),
+            const SizedBox(height: 16),
+            _buildGoalItem(
+              "Новый телефон",
+              "₽ 30,000",
+              "₽ 15,000",
+              Icons.phone_android,
+            ),
+            _buildGoalItem(
+              "Велосипед",
+              "₽ 20,000",
+              "₽ 8,000",
+              Icons.directions_bike,
+            ),
+            _buildGoalItem(
+              "Подарок маме",
+              "₽ 5,000",
+              "₽ 3,000",
+              Icons.card_giftcard,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGoalItem(String title, String target, String current, IconData icon) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: darkBlue.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: darkBlue),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  "$current из $target",
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: yellow,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: const Text(
+              "50%",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

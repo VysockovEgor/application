@@ -1,37 +1,34 @@
-class OnboardingItem {
+class OnboardingData {
   final String imagePath;
   final String title;
   final String description;
 
-  const OnboardingItem({
+  const OnboardingData({
     required this.imagePath,
     required this.title,
     required this.description,
   });
 }
 
-final List<OnboardingItem> onboardingData = [
-  const OnboardingItem(
+final List<OnboardingData> onboardingData = [
+  const OnboardingData(
     imagePath: 'assets/images/onboarding1.png',
-    title: 'Добро пожаловать в команду АНХК',
-    description:
-        'Наше приложение поможет тебе адаптироваться и быстрее погрузиться в рабочий процесс.',
+    title: 'Добро пожаловать в TeenBank!',
+    description: 'Твой первый шаг к финансовой независимости. Учись управлять деньгами с умом!',
   ),
-  const OnboardingItem(
+  const OnboardingData(
     imagePath: 'assets/images/onboarding2.png',
-    title: 'Безопасность прежде всего',
-    description:
-        'Изучите правила безопасности и охраны труда для комфортной работы.',
+    title: 'Отслеживай свои расходы',
+    description: 'Анализируй свои траты, ставь цели и экономь с помощью умных инструментов.',
   ),
-  const OnboardingItem(
+  const OnboardingData(
     imagePath: 'assets/images/onboarding3.png',
-    title: 'Будьте в курсе событий',
-    description:
-        'Получайте актуальные новости и уведомления о важных событиях компании.',
+    title: 'Зарабатывай баллы',
+    description: 'Выполняй задания, учись финансовой грамотности и получай награды за свои достижения!',
   ),
-  const OnboardingItem(
+  const OnboardingData(
     imagePath: 'assets/images/onboarding4.png',
-    title: 'Начните свой путь',
-    description: 'Готовы начать? Давайте приступим к работе вместе!',
+    title: 'Безопасность превыше всего',
+    description: 'Твои деньги и данные под надежной защитой. Родители всегда в курсе твоих финансов.',
   ),
 ];

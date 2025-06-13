@@ -35,13 +35,13 @@ class _MainAppState extends State<MainApp> {
   bool _showBackButton = false;
 
   final List<MenuItem> menuItems = [
-    MenuItem('Ссылки', attach, route: '/links'),
-    MenuItem('Адрес', location, route: '/address'),
-    MenuItem('О нас', people, route: '/about'),
-    MenuItem('Пропускной режим', mask_group, route: '/access'),
-    MenuItem('Баллы', gift, route: '/points'),
-    MenuItem('Инструкции', gift, route: '/instructions'),
-    MenuItem('Документы', gift, route: '/documents'),
+    MenuItem('Мой баланс', attach, route: '/balance'),
+    MenuItem('Траты', location, route: '/expenses'),
+    MenuItem('Цели', people, route: '/goals'),
+    MenuItem('Обучение', mask_group, route: '/education'),
+    MenuItem('Достижения', gift, route: '/achievements'),
+    MenuItem('Награды', gift, route: '/rewards'),
+    MenuItem('Настройки', gift, route: '/settings'),
   ];
 
   void _onItemTapped(int index) {
@@ -96,23 +96,23 @@ class _MainAppState extends State<MainApp> {
           onDestinationSelected: _onItemTapped,
           destinations: const [
             NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: _SelectedIcon(icon: Icons.home),
-              label: 'Главная',
+              icon: Icon(Icons.account_balance_wallet_outlined),
+              selectedIcon: _SelectedIcon(icon: Icons.account_balance_wallet),
+              label: 'Финансы',
             ),
             NavigationDestination(
-              icon: Icon(Icons.task_outlined),
-              selectedIcon: _SelectedIcon(icon: Icons.task),
-              label: 'Задачи',
+              icon: Icon(Icons.analytics_outlined),
+              selectedIcon: _SelectedIcon(icon: Icons.analytics),
+              label: 'Аналитика',
             ),
             NavigationDestination(
-              icon: Icon(Icons.question_answer),
-              selectedIcon: _SelectedIcon(icon: Icons.question_answer),
-              label: 'Вопросы',
+              icon: Icon(Icons.school_outlined),
+              selectedIcon: _SelectedIcon(icon: Icons.school),
+              label: 'Обучение',
             ),
             NavigationDestination(
-              icon: Icon(Icons.account_circle_outlined),
-              selectedIcon: _SelectedIcon(icon: Icons.account_circle),
+              icon: Icon(Icons.person_outline),
+              selectedIcon: _SelectedIcon(icon: Icons.person),
               label: 'Профиль',
             ),
           ],
